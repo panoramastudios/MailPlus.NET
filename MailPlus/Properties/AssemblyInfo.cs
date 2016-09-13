@@ -6,10 +6,10 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCompany("Panorama Studios")]
 [assembly: AssemblyProduct("MailPlus REST API client")]
 [assembly: AssemblyTrademark("MailPlus")]
-[assembly: AssemblyCulture("en-US")]
+[assembly: AssemblyCulture("")]
 
 [assembly: ComVisible(false)]
 [assembly: Guid("84825d16-bedb-4f6b-bc73-a8cacf1fe121")]
 
-[assembly: AssemblyVersion("1.1.0")]
-[assembly: AssemblyFileVersion("1.1.0")]
+[assembly: AssemblyVersion("1.1.1")]
+[assembly: AssemblyFileVersion("1.1.1")]
