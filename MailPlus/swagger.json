@@ -1,0 +1,4176 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"title": "Interactive API Documentation",
+		"version": "1.0.0"
+	},
+	"schemes": [ "https" ],
+	"host": "restapi.mailplus.nl",
+	"basePath": "/integrationservice-1.1.0",
+	"paths": {
+		"/campaign-mailing/{encryptedMailingId}": {
+			"get": {
+				"consumes": [
+					"application/xml",
+					"application/json"
+				],
+				"description": "Returns the details of a given mailing sent by a campaign, including details of the used links.",
+				"operationId": "getCampaignMailingDetails",
+				"parameters": [
+					{
+						"in": "path",
+						"name": "encryptedMailingId",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"produces": [
+					"application/xml",
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "No response was specified",
+						"schema": {
+							"$ref": "#/definitions/CampaignMailingDetails"
+						}
+					},
+					"400": {
+						"description": "Mailing type invalid",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					},
+					"404": {
+						"description": "Mailing not found",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					}
+				},
+				"summary": "Get details of a campaign mailing",
+				"tags": [
+					"campaign-mailing"
+				]
+			}
+		},
+		"/campaign-mailing/{encryptedMailingId}/bounces": {
+			"get": {
+				"consumes": [
+					"application/xml",
+					"application/json"
+				],
+				"description": "Returns bounced contacts.",
+				"operationId": "getCampaignMailingBounces",
+				"parameters": [
+					{
+						"in": "path",
+						"name": "encryptedMailingId",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"format": "int32",
+						"in": "query",
+						"name": "after",
+						"required": false,
+						"type": "integer"
+					},
+					{
+						"format": "int32",
+						"in": "query",
+						"name": "pageSize",
+						"required": false,
+						"type": "integer"
+					},
+					{
+						"in": "query",
+						"name": "fromDate",
+						"required": false,
+						"type": "string",
+						"format": "date-time"
+					},
+					{
+						"in": "query",
+						"name": "toDate",
+						"required": false,
+						"type": "string",
+						"format": "date-time"
+					}
+				],
+				"produces": [
+					"application/xml",
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "No response was specified",
+						"schema": {
+							"$ref": "#/definitions/CampaignMailingBounceResponse"
+						}
+					},
+					"400": {
+						"description": "Mailing type invalid",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					},
+					"404": {
+						"description": "Mailing not found",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					}
+				},
+				"summary": "Get bounces for a campaign mailing",
+				"tags": [
+					"campaign-mailing"
+				]
+			}
+		},
+		"/campaign-mailing/{encryptedMailingId}/clicks": {
+			"get": {
+				"consumes": [
+					"application/xml",
+					"application/json"
+				],
+				"description": "Returns contacts who clicked a link in a given mailing. Link details can be retrieved by using the GET method /campaign-mailing/{encryptedMailingId}.",
+				"operationId": "getCampaignMailingClicks",
+				"parameters": [
+					{
+						"in": "path",
+						"name": "encryptedMailingId",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"format": "int32",
+						"in": "query",
+						"name": "after",
+						"required": false,
+						"type": "integer"
+					},
+					{
+						"format": "int32",
+						"in": "query",
+						"name": "pageSize",
+						"required": false,
+						"type": "integer"
+					},
+					{
+						"in": "query",
+						"name": "fromDate",
+						"required": false,
+						"type": "string",
+						"format": "date-time"
+					},
+					{
+						"in": "query",
+						"name": "toDate",
+						"required": false,
+						"type": "string",
+						"format": "date-time"
+					}
+				],
+				"produces": [
+					"application/xml",
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "No response was specified",
+						"schema": {
+							"$ref": "#/definitions/CampaignMailingClickResponse"
+						}
+					},
+					"400": {
+						"description": "Mailing type invalid",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					},
+					"404": {
+						"description": "Mailing not found",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					}
+				},
+				"summary": "Get clicks for a campaign mailing",
+				"tags": [
+					"campaign-mailing"
+				]
+			}
+		},
+		"/campaign-mailing/{encryptedMailingId}/clicks/{campaignSubscriptionId}": {
+			"get": {
+				"consumes": [
+					"application/xml",
+					"application/json"
+				],
+				"description": "Returns click interactions for a given contact in a specified mailing. Link details can be retrieved by using the GET method /campaign-mailing/{encryptedMailingId}.",
+				"operationId": "getCampaignMailingContactClicks",
+				"parameters": [
+					{
+						"in": "path",
+						"name": "encryptedMailingId",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"format": "int32",
+						"in": "path",
+						"name": "campaignSubscriptionId",
+						"required": true,
+						"type": "integer"
+					},
+					{
+						"format": "int32",
+						"in": "query",
+						"name": "after",
+						"required": false,
+						"type": "integer"
+					},
+					{
+						"format": "int32",
+						"in": "query",
+						"name": "pageSize",
+						"required": false,
+						"type": "integer"
+					},
+					{
+						"in": "query",
+						"name": "fromDate",
+						"required": false,
+						"type": "string",
+						"format": "date-time"
+					},
+					{
+						"in": "query",
+						"name": "toDate",
+						"required": false,
+						"type": "string",
+						"format": "date-time"
+					}
+				],
+				"produces": [
+					"application/xml",
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "No response was specified",
+						"schema": {
+							"$ref": "#/definitions/MailingContactClickResponse"
+						}
+					},
+					"400": {
+						"description": "<ul><li>Invalid param: Contact not found</li><li>Invalid param: Mailing type invalid</li></ul>",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					},
+					"404": {
+						"description": "Mailing not found",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					}
+				},
+				"summary": "Get clicks for a campaign mailing for a contact",
+				"tags": [
+					"campaign-mailing"
+				]
+			}
+		},
+		"/campaign-mailing/{encryptedMailingId}/opens": {
+			"get": {
+				"consumes": [
+					"application/xml",
+					"application/json"
+				],
+				"description": "Returns contacts who opened a given mailing.",
+				"operationId": "getCampaignMailingOpens",
+				"parameters": [
+					{
+						"in": "path",
+						"name": "encryptedMailingId",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"format": "int32",
+						"in": "query",
+						"name": "after",
+						"required": false,
+						"type": "integer"
+					},
+					{
+						"format": "int32",
+						"in": "query",
+						"name": "pageSize",
+						"required": false,
+						"type": "integer"
+					},
+					{
+						"in": "query",
+						"name": "fromDate",
+						"required": false,
+						"type": "string",
+						"format": "date-time"
+					},
+					{
+						"in": "query",
+						"name": "toDate",
+						"required": false,
+						"type": "string",
+						"format": "date-time"
+					}
+				],
+				"produces": [
+					"application/xml",
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "No response was specified",
+						"schema": {
+							"$ref": "#/definitions/CampaignMailingOpenResponse"
+						}
+					},
+					"400": {
+						"description": "Mailing type invalid",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					},
+					"404": {
+						"description": "Mailing not found",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					}
+				},
+				"summary": "Get opens for a campaign mailing",
+				"tags": [
+					"campaign-mailing"
+				]
+			}
+		},
+		"/campaign-mailing/{encryptedMailingId}/opens/{campaignSubscriptionId}": {
+			"get": {
+				"consumes": [
+					"application/xml",
+					"application/json"
+				],
+				"description": "Returns open interations for a given contact in a specified mailing.",
+				"operationId": "getCampaignMailingContactOpens",
+				"parameters": [
+					{
+						"in": "path",
+						"name": "encryptedMailingId",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"format": "int32",
+						"in": "path",
+						"name": "campaignSubscriptionId",
+						"required": true,
+						"type": "integer"
+					},
+					{
+						"format": "int32",
+						"in": "query",
+						"name": "after",
+						"required": false,
+						"type": "integer"
+					},
+					{
+						"format": "int32",
+						"in": "query",
+						"name": "pageSize",
+						"required": false,
+						"type": "integer"
+					},
+					{
+						"in": "query",
+						"name": "fromDate",
+						"required": false,
+						"type": "string",
+						"format": "date-time"
+					},
+					{
+						"in": "query",
+						"name": "toDate",
+						"required": false,
+						"type": "string",
+						"format": "date-time"
+					}
+				],
+				"produces": [
+					"application/xml",
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "No response was specified",
+						"schema": {
+							"$ref": "#/definitions/MailingContactOpenResponse"
+						}
+					},
+					"400": {
+						"description": "<ul><li>Invalid param: Contact not found</li><li>Invalid param: Mailing type invalid</li></ul>",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					},
+					"404": {
+						"description": "Mailing not found",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					}
+				},
+				"summary": "Get opens for a campaign mailing for a contact",
+				"tags": [
+					"campaign-mailing"
+				]
+			}
+		},
+		"/campaign-mailing/{encryptedMailingId}/recipients": {
+			"get": {
+				"consumes": [
+					"application/xml",
+					"application/json"
+				],
+				"description": "Returns contacts to which the mailing has been sent.",
+				"operationId": "getCampaignMailingRecipientContacts",
+				"parameters": [
+					{
+						"in": "path",
+						"name": "encryptedMailingId",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"format": "int32",
+						"in": "query",
+						"name": "after",
+						"required": false,
+						"type": "integer"
+					},
+					{
+						"format": "int32",
+						"in": "query",
+						"name": "pageSize",
+						"required": false,
+						"type": "integer"
+					},
+					{
+						"in": "query",
+						"name": "fromDate",
+						"required": false,
+						"type": "string",
+						"format": "date-time"
+					},
+					{
+						"in": "query",
+						"name": "toDate",
+						"required": false,
+						"type": "string",
+						"format": "date-time"
+					}
+				],
+				"produces": [
+					"application/xml",
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "No response was specified",
+						"schema": {
+							"$ref": "#/definitions/CampaignMailingRecipientResponse"
+						}
+					},
+					"400": {
+						"description": "Mailing type invalid",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					},
+					"404": {
+						"description": "Mailing not found",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					}
+				},
+				"summary": "Get recipients for a campaign mailing",
+				"tags": [
+					"campaign-mailing"
+				]
+			}
+		},
+		"/campaign/list": {
+			"get": {
+				"consumes": [
+					"application/xml",
+					"application/json"
+				],
+				"description": "Returns a list of all campaigns, including external campaign triggers. Other trigger types will not be shown.",
+				"operationId": "getCampaigns",
+				"produces": [
+					"application/xml",
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "No response was specified",
+						"schema": {
+							"items": {
+								"$ref": "#/definitions/Campaign"
+							},
+							"type": "array"
+						}
+					}
+				},
+				"summary": "Get all campaigns",
+				"tags": [
+					"campaign"
+				]
+			}
+		},
+		"/campaign/trigger/{encryptedTriggerId}": {
+			"post": {
+				"consumes": [
+					"application/xml",
+					"application/json"
+				],
+				"description": "Triggers a campaign for a given contact. The encryptedTriggerId can be retrieved by using the GET method /campaign/list.",
+				"operationId": "triggerCampaign",
+				"parameters": [
+					{
+						"in": "path",
+						"name": "encryptedTriggerId",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"in": "body",
+						"name": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/CampaignTriggerRequest"
+						}
+					}
+				],
+				"produces": [
+					"application/xml",
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "No response was specified"
+					},
+					"204": {
+						"description": "Campaign triggered successfully"
+					},
+					"400": {
+						"description": "<ul><li>Contact not found</li><li>Product not found</li><li>Campaign inactive</li><li>Campaign missing message</li><li>Contact already in campaign</li><li>Contact already active in campaign</li><li>Contact not in selection</li></ul>",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					},
+					"404": {
+						"description": "Trigger not found",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					}
+				},
+				"summary": "Trigger a campaign for a specific contact",
+				"tags": [
+					"campaign"
+				]
+			}
+		},
+		"/campaign/{encryptedCampaignId}/mailing": {
+			"get": {
+				"consumes": [
+					"application/xml",
+					"application/json"
+				],
+				"description": "Returns all mailings being sent by a given campaign. The encryptedCampaignId can be retrieved by using the GET method /campaign/list.",
+				"operationId": "getCampaignMailings",
+				"parameters": [
+					{
+						"in": "path",
+						"name": "encryptedCampaignId",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"produces": [
+					"application/xml",
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "No response was specified",
+						"schema": {
+							"items": {
+								"$ref": "#/definitions/CampaignMailing"
+							},
+							"type": "array"
+						}
+					},
+					"404": {
+						"description": "Campaign not found",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					}
+				},
+				"summary": "Get all mailings of a campaign",
+				"tags": [
+					"campaign"
+				]
+			}
+		},
+		"/campaign/{encryptedCampaignId}/stop": {
+			"post": {
+				"consumes": [
+					"application/xml",
+					"application/json"
+				],
+				"description": "Stops a running campaign for a given contact. The encryptedCampaignId can be retrieved by using the GET method /campaign/list.",
+				"operationId": "stopCampaign",
+				"parameters": [
+					{
+						"in": "path",
+						"name": "encryptedCampaignId",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"in": "body",
+						"name": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/CampaignStopRequest"
+						}
+					}
+				],
+				"produces": [
+					"application/xml",
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "No response was specified"
+					},
+					"204": {
+						"description": "Campaign stopped successfully"
+					},
+					"400": {
+						"description": "<ul><li>Contact not found</li><li>Campaign already finished</li><li>Campaign not triggered</li></ul>",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					},
+					"404": {
+						"description": "Campaign not found",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					}
+				},
+				"summary": "Stop a campaign for a specific contact",
+				"tags": [
+					"campaign"
+				]
+			}
+		},
+		"/contact": {
+			"post": {
+				"consumes": [
+					"application/xml",
+					"application/json"
+				],
+				"description": "Adds a contact to Mailplus. A unique identifier \"externalId\" is required for each contact. Available properties can be retrieved by using the GET methode /contact/properties/list.",
+				"operationId": "insertContact",
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/ContactRequest"
+						}
+					}
+				],
+				"produces": [
+					"application/xml",
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "No response was specified"
+					},
+					"204": {
+						"description": "Contact added successfully"
+					},
+					"400": {
+						"description": "<ul><li>Email is invalid</li><li>Property is invalid</li></ul>",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					}
+				},
+				"summary": "Add a contact",
+				"tags": [
+					"contact"
+				]
+			}
+		},
+		"/contact/bounces/list": {
+			"get": {
+				"consumes": [
+					"application/xml",
+					"application/json"
+				],
+				"description": "Returns bounced contacts within a specific period of time.",
+				"operationId": "getBouncedContacts",
+				"parameters": [
+					{
+						"in": "query",
+						"name": "fromDate",
+						"required": true,
+						"type": "string",
+						"format": "date-time"
+					},
+					{
+						"in": "query",
+						"name": "toDate",
+						"required": true,
+						"type": "string",
+						"format": "date-time"
+					}
+				],
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "No response was specified",
+						"schema": {
+							"items": {
+								"$ref": "#/definitions/ContactBounce"
+							},
+							"type": "array"
+						}
+					},
+					"400": {
+						"description": "<ul><li>Invalid fromDate or no fromDate given</li><li>Invalid toDate or no toDate given</li></ul>",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					}
+				},
+				"summary": "Get bounced contacts",
+				"tags": [
+					"contact"
+				]
+			}
+		},
+		"/contact/properties/list": {
+			"get": {
+				"consumes": [
+					"application/xml",
+					"application/json"
+				],
+				"description": "Returns a list of available properties that are part of a contact object.",
+				"operationId": "getContactProperties",
+				"produces": [
+					"application/xml",
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "No response was specified",
+						"schema": {
+							"items": {
+								"$ref": "#/definitions/Property"
+							},
+							"type": "array"
+						}
+					}
+				},
+				"summary": "Get all properties",
+				"tags": [
+					"contact"
+				]
+			}
+		},
+		"/contact/search": {
+			"get": {
+				"consumes": [
+					"application/xml",
+					"application/json"
+				],
+				"description": "Returns a contact based on a given property value. Available properties can be retrieved by using the GET methode /contact/properties/list.",
+				"operationId": "searchContacts",
+				"parameters": [
+					{
+						"in": "query",
+						"name": "MPSearchQuery",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "No response was specified",
+						"schema": {
+							"items": {
+								"$ref": "#/definitions/Contact"
+							},
+							"type": "array"
+						}
+					}
+				},
+				"summary": "Get contacts by properties",
+				"tags": [
+					"contact"
+				]
+			}
+		},
+		"/contact/updates/list": {
+			"get": {
+				"consumes": [
+					"application/xml",
+					"application/json"
+				],
+				"description": "Returns contacts which have been updated within a specific period of time.",
+				"operationId": "getUpdatedContacts",
+				"parameters": [
+					{
+						"in": "query",
+						"name": "fromDate",
+						"required": true,
+						"type": "string",
+						"format": "date-time"
+					},
+					{
+						"in": "query",
+						"name": "toDate",
+						"required": true,
+						"type": "string",
+						"format": "date-time"
+					}
+				],
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "No response was specified",
+						"schema": {
+							"items": {
+								"$ref": "#/definitions/Contact"
+							},
+							"type": "array"
+						}
+					},
+					"400": {
+						"description": "<ul><li>Invalid fromDate or no fromDate given</li><li>Invalid toDate or no toDate given</li></ul>",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					}
+				},
+				"summary": "Get updated contacts",
+				"tags": [
+					"contact"
+				]
+			}
+		},
+		"/contact/{externalId}": {
+			"get": {
+				"consumes": [
+					"application/xml",
+					"application/json"
+				],
+				"description": "Returns a given contact, including a list of all properties. Properties will only be shown if data is available.",
+				"operationId": "getContact",
+				"parameters": [
+					{
+						"in": "path",
+						"name": "externalId",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"produces": [
+					"application/xml",
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "No response was specified",
+						"schema": {
+							"$ref": "#/definitions/Contact"
+						}
+					},
+					"404": {
+						"description": "Given contact not found",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					}
+				},
+				"summary": "Get a contact",
+				"tags": [
+					"contact"
+				]
+			},
+			"put": {
+				"consumes": [
+					"application/xml",
+					"application/json"
+				],
+				"description": "Modifies a existing given contact.",
+				"operationId": "updateContact",
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/ContactRequest"
+						}
+					},
+					{
+						"in": "path",
+						"name": "externalId",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"produces": [
+					"application/xml",
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "No response was specified"
+					},
+					"204": {
+						"description": "Contact added successfully"
+					},
+					"400": {
+						"description": "<ul><li>Email is invalid</li><li>Property is invalid</li></ul>",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					},
+					"404": {
+						"description": "Given contact not found",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					}
+				},
+				"summary": "Update a contact",
+				"tags": [
+					"contact"
+				]
+			}
+		},
+		"/contact/{externalId}/campaign-mailings": {
+			"get": {
+				"consumes": [
+					"application/xml",
+					"application/json"
+				],
+				"description": "Returns received campaign mailings for a given contact. Default pagesize is 50 (Cannot be modified).",
+				"operationId": "getContactCampaignMailingHistory",
+				"parameters": [
+					{
+						"in": "path",
+						"name": "externalId",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"format": "int32",
+						"in": "query",
+						"name": "after",
+						"required": false,
+						"type": "integer"
+					}
+				],
+				"produces": [
+					"application/xml",
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "No response was specified",
+						"schema": {
+							"$ref": "#/definitions/CampaignMailingHistoryResponse"
+						}
+					},
+					"404": {
+						"description": "Given contact not found",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					}
+				},
+				"summary": "Get campaign mailing history for a contact",
+				"tags": [
+					"contact"
+				]
+			}
+		},
+		"/contact/{externalId}/forms": {
+			"get": {
+				"consumes": [
+					"application/xml",
+					"application/json"
+				],
+				"description": "Returns submitted forms for a given contact.",
+				"operationId": "getContactFormHistory",
+				"parameters": [
+					{
+						"in": "path",
+						"name": "externalId",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"format": "int32",
+						"in": "query",
+						"name": "after",
+						"required": false,
+						"type": "integer"
+					},
+					{
+						"format": "int32",
+						"in": "query",
+						"name": "pageSize",
+						"required": false,
+						"type": "integer"
+					}
+				],
+				"produces": [
+					"application/xml",
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "No response was specified",
+						"schema": {
+							"$ref": "#/definitions/FormHistoryResponse"
+						}
+					},
+					"404": {
+						"description": "Given contact not found",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					}
+				},
+				"summary": "Get form history for a contact",
+				"tags": [
+					"contact"
+				]
+			}
+		},
+		"/contact/{externalId}/mailings": {
+			"get": {
+				"consumes": [
+					"application/xml",
+					"application/json"
+				],
+				"description": "Returns received mailings for a given contact. Default pagesize is 50 (Cannot be modified).",
+				"operationId": "getContactMailingHistory",
+				"parameters": [
+					{
+						"in": "path",
+						"name": "externalId",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"format": "int32",
+						"in": "query",
+						"name": "after",
+						"required": false,
+						"type": "integer"
+					}
+				],
+				"produces": [
+					"application/xml",
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "No response was specified",
+						"schema": {
+							"$ref": "#/definitions/MailingHistoryResponse"
+						}
+					},
+					"404": {
+						"description": "Given contact not found",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					}
+				},
+				"summary": "Get mailing history for a contact",
+				"tags": [
+					"contact"
+				]
+			}
+		},
+		"/conversion": {
+			"post": {
+				"consumes": [
+					"application/xml",
+					"application/json"
+				],
+				"description": "Posts created-, converted and abandoned shopping carts to MailPlus as a result of click in a sent mailing. The mailplusId is added to every trackable URL, that leads to your website. This ID is unique for every mailing and contact.",
+				"operationId": "createConversionInteraction",
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Conversion"
+						}
+					}
+				],
+				"produces": [
+					"application/xml",
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "No response was specified"
+					},
+					"204": {
+						"description": "Conversion created successfully"
+					},
+					"400": {
+						"description": "<ul><li>Activity not found</li><li>Link not found</li><li>Product not found</li><li>Contact not found</li><li>MailplusId wrong format</li><li>Illegal interaction type</li><li>Illegal conversion value</li><li>Illegal interaction date</li></ul>",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					}
+				},
+				"summary": "Add a conversion interaction",
+				"tags": [
+					"conversion"
+				]
+			}
+		},
+		"/form/list": {
+			"get": {
+				"description": "Returns a list all available forms.",
+				"operationId": "getForms",
+				"parameters": [
+					{
+						"enum": [
+							"normal",
+							"subscribe",
+							"unSubscribe",
+							"editProfile"
+						],
+						"in": "query",
+						"name": "formSubType",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"enum": [
+							"draft",
+							"proof",
+							"final"
+						],
+						"in": "query",
+						"name": "formState",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"produces": [
+					"application/xml",
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "No response was specified",
+						"schema": {
+							"items": {
+								"$ref": "#/definitions/Form"
+							},
+							"type": "array"
+						}
+					}
+				},
+				"summary": "Get all forms",
+				"tags": [
+					"form"
+				]
+			}
+		},
+		"/form/result/{formId}": {
+			"get": {
+				"description": "Returns submitted results of a requested form, including all given answers for every submit.",
+				"operationId": "getFormResults",
+				"parameters": [
+					{
+						"format": "int32",
+						"in": "path",
+						"name": "formId",
+						"required": true,
+						"type": "integer"
+					},
+					{
+						"enum": [
+							"true"
+						],
+						"in": "query",
+						"name": "completed",
+						"required": false,
+						"type": "boolean"
+					},
+					{
+						"in": "query",
+						"name": "startDate",
+						"required": false,
+						"type": "string",
+						"format": "date"
+					},
+					{
+						"in": "query",
+						"name": "endDate",
+						"required": false,
+						"type": "string",
+						"format": "date"
+					}
+				],
+				"produces": [
+					"application/xml",
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "No response was specified",
+						"schema": {
+							"items": {
+								"$ref": "#/definitions/FormResult"
+							},
+							"type": "array"
+						}
+					}
+				},
+				"summary": "Get form results",
+				"tags": [
+					"form"
+				]
+			},
+			"post": {
+				"consumes": [
+					"application/xml",
+					"application/json"
+				],
+				"description": "Submits a form response to a MailPlus form. The post URL needs to refer to your own system.",
+				"operationId": "submitForm",
+				"parameters": [
+					{
+						"format": "int32",
+						"in": "path",
+						"name": "formId",
+						"required": true,
+						"type": "integer"
+					},
+					{
+						"in": "body",
+						"name": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Params"
+						}
+					}
+				],
+				"produces": [
+					"application/xml",
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "No response was specified",
+						"schema": {
+							"$ref": "#/definitions/FormResponse"
+						}
+					}
+				},
+				"summary": "Post a form result",
+				"tags": [
+					"form"
+				]
+			}
+		},
+		"/form/result/{formId}/{formResultId}": {
+			"get": {
+				"consumes": [
+					"application/xml",
+					"application/json"
+				],
+				"description": "Returns a submitted result of a requested form for a given formResultId. A formResultId can be retrieved by using the GET method /contact/{externalId}/forms.",
+				"operationId": "getFormResult",
+				"parameters": [
+					{
+						"format": "int32",
+						"in": "path",
+						"name": "formId",
+						"required": true,
+						"type": "integer"
+					},
+					{
+						"format": "int32",
+						"in": "path",
+						"name": "formResultId",
+						"required": true,
+						"type": "integer"
+					}
+				],
+				"produces": [
+					"application/xml",
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "No response was specified",
+						"schema": {
+							"$ref": "#/definitions/FormResult"
+						}
+					},
+					"404": {
+						"description": "Form or formResult not found",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					}
+				},
+				"summary": "Get form result",
+				"tags": [
+					"form"
+				]
+			}
+		},
+		"/form/{formId}": {
+			"get": {
+				"consumes": [
+					"application/xml",
+					"application/json"
+				],
+				"description": "Returns a HTML output of the requested form.",
+				"operationId": "getForm",
+				"parameters": [
+					{
+						"format": "int32",
+						"in": "path",
+						"name": "formId",
+						"required": true,
+						"type": "integer"
+					},
+					{
+						"in": "query",
+						"name": "postUrl",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"description": "Unique (MailPlus) id of a contact (when present the form is prefilled with contact fields)",
+						"in": "query",
+						"name": "encId",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"in": "query",
+						"name": "extraParams",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"default": "HTML4STRICT",
+						"enum": [
+							"HTML4STRICT",
+							"XHTML1STRICT"
+						],
+						"in": "query",
+						"name": "outputFormat",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"default": "TABLES",
+						"enum": [
+							"TABLES",
+							"DIV"
+						],
+						"in": "query",
+						"name": "outputMode",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"produces": [
+					"application/xml",
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "No response was specified",
+						"schema": {
+							"$ref": "#/definitions/FormResponse"
+						}
+					},
+					"404": {
+						"description": "Form not found",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					}
+				},
+				"summary": "Get a form",
+				"tags": [
+					"form"
+				]
+			},
+			"post": {
+				"consumes": [
+					"application/xml",
+					"application/json"
+				],
+				"description": "Returns a prefilled HTML output of a requested form, based on the given parameters for a specific contact.  If a contact is present in MailPlus, existing data will be prefilled in de used contact fields. The post URL needs to refer to your own system.",
+				"operationId": "postForm",
+				"parameters": [
+					{
+						"format": "int32",
+						"in": "path",
+						"name": "formId",
+						"required": true,
+						"type": "integer"
+					},
+					{
+						"in": "body",
+						"name": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/FormRequest"
+						}
+					}
+				],
+				"produces": [
+					"application/xml",
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "No response was specified",
+						"schema": {
+							"$ref": "#/definitions/FormResponse"
+						}
+					},
+					"404": {
+						"description": "Form not found",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					}
+				},
+				"summary": "Post a form",
+				"tags": [
+					"form"
+				]
+			}
+		},
+		"/mailing": {
+			"get": {
+				"consumes": [
+					"application/xml",
+					"application/json"
+				],
+				"description": "Returns a list of all mailings, including a link to the archived online version of the sent mailing.",
+				"operationId": "getMailings",
+				"parameters": [
+					{
+						"in": "query",
+						"name": "fromDate",
+						"required": true,
+						"type": "string",
+						"format": "date-time"
+					},
+					{
+						"in": "query",
+						"name": "toDate",
+						"required": true,
+						"type": "string",
+						"format": "date-time"
+					}
+				],
+				"produces": [
+					"application/xml",
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "No response was specified",
+						"schema": {
+							"items": {
+								"$ref": "#/definitions/Mailing"
+							},
+							"type": "array"
+						}
+					},
+					"400": {
+						"description": "<ul><li>Invalid fromDate or no fromDate given</li><li>Invalid toDate or no toDate given</li></ul>",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					}
+				},
+				"summary": "Get sent mailings in period",
+				"tags": [
+					"mailing"
+				]
+			}
+		},
+		"/mailing/{encryptedMailingId}": {
+			"get": {
+				"consumes": [
+					"application/xml",
+					"application/json"
+				],
+				"description": "Returns the details of a given mailing, including details of the used links.",
+				"operationId": "getMailingDetails",
+				"parameters": [
+					{
+						"in": "path",
+						"name": "encryptedMailingId",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"produces": [
+					"application/xml",
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "No response was specified",
+						"schema": {
+							"$ref": "#/definitions/MailingDetails"
+						}
+					},
+					"400": {
+						"description": "Mailing type invalid",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					},
+					"404": {
+						"description": "Given mailing not found",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					}
+				},
+				"summary": "Get mailing data",
+				"tags": [
+					"mailing"
+				]
+			}
+		},
+		"/mailing/{encryptedMailingId}/bounces": {
+			"get": {
+				"consumes": [
+					"application/xml",
+					"application/json"
+				],
+				"description": "Returns bounced contacts.",
+				"operationId": "getMailingBounces",
+				"parameters": [
+					{
+						"in": "path",
+						"name": "encryptedMailingId",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"format": "int32",
+						"in": "query",
+						"name": "after",
+						"required": false,
+						"type": "integer"
+					},
+					{
+						"format": "int32",
+						"in": "query",
+						"name": "pageSize",
+						"required": false,
+						"type": "integer"
+					}
+				],
+				"produces": [
+					"application/xml",
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "No response was specified",
+						"schema": {
+							"$ref": "#/definitions/MailingBounceResponse"
+						}
+					},
+					"400": {
+						"description": "Mailing type invalid",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					},
+					"404": {
+						"description": "Given mailing not found",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					}
+				},
+				"summary": "Get bounces for mailing",
+				"tags": [
+					"mailing"
+				]
+			}
+		},
+		"/mailing/{encryptedMailingId}/clicks": {
+			"get": {
+				"consumes": [
+					"application/xml",
+					"application/json"
+				],
+				"description": "Returns contacts who clicked a link in a given mailing. Link details can be retrieved by using the GET method /mailing/{encryptedMailingId}.",
+				"operationId": "getMailingClicks",
+				"parameters": [
+					{
+						"in": "path",
+						"name": "encryptedMailingId",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"format": "int32",
+						"in": "query",
+						"name": "after",
+						"required": false,
+						"type": "integer"
+					},
+					{
+						"format": "int32",
+						"in": "query",
+						"name": "pageSize",
+						"required": false,
+						"type": "integer"
+					}
+				],
+				"produces": [
+					"application/xml",
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "No response was specified",
+						"schema": {
+							"$ref": "#/definitions/MailingClickResponse"
+						}
+					},
+					"400": {
+						"description": "Mailing type invalid",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					},
+					"404": {
+						"description": "Given mailing not found",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					}
+				},
+				"summary": "Get clicks for mailing",
+				"tags": [
+					"mailing"
+				]
+			}
+		},
+		"/mailing/{encryptedMailingId}/clicks/{externalId}": {
+			"get": {
+				"consumes": [
+					"application/xml",
+					"application/json"
+				],
+				"description": "Returns click interactions for a given contact in a specified mailing. Link details can be retrieved by using the GET method /mailing/{encryptedMailingId}.",
+				"operationId": "getMailingContactClicks",
+				"parameters": [
+					{
+						"in": "path",
+						"name": "encryptedMailingId",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"in": "path",
+						"name": "externalId",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"format": "int32",
+						"in": "query",
+						"name": "after",
+						"required": false,
+						"type": "integer"
+					},
+					{
+						"format": "int32",
+						"in": "query",
+						"name": "pageSize",
+						"required": false,
+						"type": "integer"
+					}
+				],
+				"produces": [
+					"application/xml",
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "No response was specified",
+						"schema": {
+							"$ref": "#/definitions/MailingContactClickResponse"
+						}
+					},
+					"400": {
+						"description": "<ul><li>Invalid param: Contact not found</li><li>Invalid param: Mailing type invalid</li></ul>",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					},
+					"404": {
+						"description": "Given mailing not found",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					}
+				},
+				"summary": "Get clicks of a mailing for a contact",
+				"tags": [
+					"mailing"
+				]
+			}
+		},
+		"/mailing/{encryptedMailingId}/opens": {
+			"get": {
+				"consumes": [
+					"application/xml",
+					"application/json"
+				],
+				"description": "Returns contacts who opened a given mailing.",
+				"operationId": "getMailingOpens",
+				"parameters": [
+					{
+						"in": "path",
+						"name": "encryptedMailingId",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"format": "int32",
+						"in": "query",
+						"name": "after",
+						"required": false,
+						"type": "integer"
+					},
+					{
+						"format": "int32",
+						"in": "query",
+						"name": "pageSize",
+						"required": false,
+						"type": "integer"
+					}
+				],
+				"produces": [
+					"application/xml",
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "No response was specified",
+						"schema": {
+							"$ref": "#/definitions/MailingOpenResponse"
+						}
+					},
+					"400": {
+						"description": "Mailing type invalid",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					},
+					"404": {
+						"description": "Given mailing not found",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					}
+				},
+				"summary": "Get opens for mailing",
+				"tags": [
+					"mailing"
+				]
+			}
+		},
+		"/mailing/{encryptedMailingId}/opens/{externalId}": {
+			"get": {
+				"consumes": [
+					"application/xml",
+					"application/json"
+				],
+				"description": "Returns open interations for a given contact in a specified mailing.",
+				"operationId": "getMailingContactOpens",
+				"parameters": [
+					{
+						"in": "path",
+						"name": "encryptedMailingId",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"in": "path",
+						"name": "externalId",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"format": "int32",
+						"in": "query",
+						"name": "after",
+						"required": false,
+						"type": "integer"
+					},
+					{
+						"format": "int32",
+						"in": "query",
+						"name": "pageSize",
+						"required": false,
+						"type": "integer"
+					}
+				],
+				"produces": [
+					"application/xml",
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "No response was specified",
+						"schema": {
+							"$ref": "#/definitions/MailingContactOpenResponse"
+						}
+					},
+					"400": {
+						"description": "<ul><li>Invalid param: Contact not found</li><li>Invalid param: Mailing type invalid</li></ul>",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					},
+					"404": {
+						"description": "Given mailing not found",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					}
+				},
+				"summary": "Get opens of a mailing for a contact",
+				"tags": [
+					"mailing"
+				]
+			}
+		},
+		"/mailing/{encryptedMailingId}/recipients": {
+			"get": {
+				"consumes": [
+					"application/xml",
+					"application/json"
+				],
+				"description": "Returns contacts to which the mailing has been sent.",
+				"operationId": "getMailingRecipientContacts",
+				"parameters": [
+					{
+						"in": "path",
+						"name": "encryptedMailingId",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"format": "int32",
+						"in": "query",
+						"name": "after",
+						"required": false,
+						"type": "integer"
+					},
+					{
+						"format": "int32",
+						"in": "query",
+						"name": "pageSize",
+						"required": false,
+						"type": "integer"
+					}
+				],
+				"produces": [
+					"application/xml",
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "No response was specified",
+						"schema": {
+							"$ref": "#/definitions/MailingRecipientResponse"
+						}
+					},
+					"400": {
+						"description": "Mailing type invalid",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					},
+					"404": {
+						"description": "Given mailing not found",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					}
+				},
+				"summary": "Get recipients for mailing",
+				"tags": [
+					"mailing"
+				]
+			}
+		},
+		"/mailing/{encryptedMailingId}/statistics": {
+			"get": {
+				"consumes": [
+					"application/xml",
+					"application/json"
+				],
+				"description": "Returns a summary of the results for a sent mailing, such as the opens, clicks, bounces, etc.",
+				"operationId": "getMailingStats",
+				"parameters": [
+					{
+						"in": "path",
+						"name": "encryptedMailingId",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"produces": [
+					"application/xml",
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "No response was specified",
+						"schema": {
+							"$ref": "#/definitions/MailingStats"
+						}
+					},
+					"400": {
+						"description": "Mailing type invalid",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					},
+					"404": {
+						"description": "Given mailing not found",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					}
+				},
+				"summary": "Get mailing statistics",
+				"tags": [
+					"mailing"
+				]
+			}
+		},
+		"/order": {
+			"post": {
+				"consumes": [
+					"application/xml",
+					"application/json"
+				],
+				"description": "Adds an order to MailPlus.",
+				"operationId": "insertOrder",
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/OrderRequest"
+						}
+					}
+				],
+				"produces": [
+					"application/xml",
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "No response was specified"
+					},
+					"204": {
+						"description": "Order created successfully"
+					},
+					"400": {
+						"description": "<ul><li>Product not found</li><li>Contact not found</li><li>Order is empty</li><li>Date is empty</li><li>No product list</li><li>Productlist is empty</li><li>Product id is empty</li><li>OrderId is empty</li><li>ExternalContactId id empty</li><li>Illegal order value</li><li>Illegal order date</li></ul>",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					}
+				},
+				"summary": "Add an order",
+				"tags": [
+					"order"
+				]
+			}
+		},
+		"/order/{externalOrderId}": {
+			"delete": {
+				"consumes": [
+					"application/xml",
+					"application/json"
+				],
+				"description": "Deletes an existing order.",
+				"operationId": "deleteOrder",
+				"parameters": [
+					{
+						"in": "path",
+						"name": "externalOrderId",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"produces": [
+					"application/xml",
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "No response was specified"
+					},
+					"204": {
+						"description": "Order deleted successfully"
+					},
+					"404": {
+						"description": "Order not found",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					}
+				},
+				"summary": "Delete an order",
+				"tags": [
+					"order"
+				]
+			},
+			"put": {
+				"consumes": [
+					"application/xml",
+					"application/json"
+				],
+				"description": "Updates an existing order.",
+				"operationId": "updateOrder",
+				"parameters": [
+					{
+						"in": "path",
+						"name": "externalOrderId",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"in": "body",
+						"name": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/OrderRequest"
+						}
+					}
+				],
+				"produces": [
+					"application/xml",
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "No response was specified"
+					},
+					"204": {
+						"description": "Order updated successfully"
+					},
+					"400": {
+						"description": "<ul><li>Product not found</li><li>Contact not found</li><li>Order is empty</li><li>Date is empty</li><li>No product list</li><li>Productlist is empty</li><li>Product id is empty</li><li>OrderId is empty</li><li>ExternalContactId id empty</li><li>Illegal order value</li><li>Illegal order date</li></ul>",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					},
+					"404": {
+						"description": "Ordeer not found",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					}
+				},
+				"summary": "Update an order",
+				"tags": [
+					"order"
+				]
+			}
+		},
+		"/product": {
+			"post": {
+				"consumes": [
+					"application/xml",
+					"application/json"
+				],
+				"description": "Adds a product to MailPlus.",
+				"operationId": "insertProduct",
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/ProductRequest"
+						}
+					}
+				],
+				"produces": [
+					"application/xml",
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "No response was specified"
+					},
+					"204": {
+						"description": "Product created successfully"
+					},
+					"400": {
+						"description": "<ul><li>externalId must be unique</li><li>price cannot be null</li><li>product cannot be null</li><li>image url cannot be null or empty</li><li>link cannot be null or empty</li><li>externalId cannot be null or empty</li><li>name cannot be null or empty</li></ul>",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					}
+				},
+				"summary": "Add a product",
+				"tags": [
+					"product"
+				]
+			}
+		},
+		"/product/{externalProductId}": {
+			"delete": {
+				"consumes": [
+					"application/xml",
+					"application/json"
+				],
+				"description": "Deletes an existing given product.",
+				"operationId": "deleteProduct",
+				"parameters": [
+					{
+						"in": "path",
+						"name": "externalProductId",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"produces": [
+					"application/xml",
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "No response was specified"
+					},
+					"204": {
+						"description": "Product deleted successfully"
+					},
+					"404": {
+						"description": "Product not found",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					}
+				},
+				"summary": "Delete a product",
+				"tags": [
+					"product"
+				]
+			},
+			"get": {
+				"consumes": [
+					"application/xml",
+					"application/json"
+				],
+				"description": "Returns a given product.",
+				"operationId": "getProduct",
+				"parameters": [
+					{
+						"in": "path",
+						"name": "externalProductId",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"produces": [
+					"application/xml",
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "No response was specified",
+						"schema": {
+							"$ref": "#/definitions/Product"
+						}
+					},
+					"404": {
+						"description": "Product not found",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					}
+				},
+				"summary": "Get a product",
+				"tags": [
+					"product"
+				]
+			},
+			"put": {
+				"consumes": [
+					"application/xml",
+					"application/json"
+				],
+				"description": "Updates an existing given product.",
+				"operationId": "updateProduct",
+				"parameters": [
+					{
+						"in": "path",
+						"name": "externalProductId",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"in": "body",
+						"name": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/ProductRequest"
+						}
+					}
+				],
+				"produces": [
+					"application/xml",
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "No response was specified"
+					},
+					"204": {
+						"description": "Product updated successfully"
+					},
+					"400": {
+						"description": "<ul><li>externalId must be unique</li><li>price cannot be null</li><li>product cannot be null</li><li>image url cannot be null or empty</li><li>link cannot be null or empty</li><li>externalId cannot be null or empty</li><li>name cannot be null or empty</li></ul>",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					},
+					"404": {
+						"description": "Product not found",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					}
+				},
+				"summary": "Update a product",
+				"tags": [
+					"product"
+				]
+			}
+		},
+		"/subscription/subscribe": {
+			"post": {
+				"consumes": [
+					"application/xml",
+					"application/json"
+				],
+				"description": "Adds a contact to Mailplus. A unique identifier \"externalId\" is NOT required. Available properties can be retrieved by using the GET methode /contact/properties/list.",
+				"operationId": "subscribeContact",
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Contact"
+						}
+					}
+				],
+				"produces": [
+					"application/xml",
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "No response was specified"
+					},
+					"204": {
+						"description": "Subscription added successfully"
+					},
+					"400": {
+						"description": "<ul><li>Email is invalid</li><li>Property is invalid</li></ul>",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					}
+				},
+				"summary": "Subscribe a contact",
+				"tags": [
+					"subscription"
+				]
+			}
+		},
+		"/templist": {
+			"get": {
+				"consumes": [
+					"application/xml",
+					"application/json"
+				],
+				"description": "Returns a list of all available temporary lists.",
+				"operationId": "getTemporaryLists",
+				"produces": [
+					"application/xml",
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "No response was specified",
+						"schema": {
+							"items": {
+								"$ref": "#/definitions/TemporaryList"
+							},
+							"type": "array"
+						}
+					}
+				},
+				"summary": "Get all temporary lists",
+				"tags": [
+					"templist"
+				]
+			},
+			"post": {
+				"consumes": [
+					"application/xml",
+					"application/json"
+				],
+				"description": "Adds a set of existing contacts as a temporary list to MailPlus, based on external contact id's.",
+				"operationId": "createTemporaryList",
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/CreateTemporaryListRequest"
+						}
+					}
+				],
+				"produces": [
+					"application/xml",
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "No response was specified"
+					},
+					"204": {
+						"description": "Templist created successfully"
+					},
+					"400": {
+						"description": "<ul><li>Temporary list with specified externalTemporaryListId already exists</li><li>Temporary list with specified name already exists</li><li>Too many temporary lists</li><li>No templist created, one or more contacts could not be found</li></ul>",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					}
+				},
+				"summary": "Add a temporary list",
+				"tags": [
+					"templist"
+				]
+			}
+		},
+		"/templist/{externalTemporaryListId}": {
+			"delete": {
+				"consumes": [
+					"application/xml",
+					"application/json"
+				],
+				"description": "Deletes a temporary list. An externalTemporaryListId can be retrieved by using the GET method /templist.",
+				"operationId": "deleteTemporaryList",
+				"parameters": [
+					{
+						"in": "path",
+						"name": "externalTemporaryListId",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"produces": [
+					"application/xml",
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "No response was specified"
+					},
+					"204": {
+						"description": "Templist removed successfully"
+					},
+					"400": {
+						"description": "Temporary list in use",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					},
+					"404": {
+						"description": "Templist not found",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					}
+				},
+				"summary": "Delete a temporary list",
+				"tags": [
+					"templist"
+				]
+			},
+			"post": {
+				"consumes": [
+					"application/xml",
+					"application/json"
+				],
+				"description": "Adds a set of existing contacts to a given temporary list, based on external contact id's. An externalTemporaryListId can be retrieved by using the GET method /templist.",
+				"operationId": "addContactsToTemporaryList",
+				"parameters": [
+					{
+						"in": "path",
+						"name": "externalTemporaryListId",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"in": "body",
+						"name": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/AddContactsToTemporaryListRequest"
+						}
+					}
+				],
+				"produces": [
+					"application/xml",
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "No response was specified"
+					},
+					"204": {
+						"description": "Contacts successfully added to the templist"
+					},
+					"400": {
+						"description": "One or more contacts could not be found",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					},
+					"404": {
+						"description": "Templist not found",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					}
+				},
+				"summary": "Add contacts to a temporary list",
+				"tags": [
+					"templist"
+				]
+			}
+		}
+	},
+	"definitions": {
+		"AddContactsToTemporaryListRequest": {
+			"properties": {
+				"contacts": {
+					"description": "List of externalContactId's",
+					"items": {
+						"type": "string"
+					},
+					"type": "array"
+				}
+			},
+			"required": [
+				"contacts"
+			]
+		},
+		"Campaign": {
+			"properties": {
+				"active": {
+					"description": "Campaign status",
+					"type": "boolean"
+				},
+				"encryptedId": {
+					"description": "encryptedCampaignId",
+					"type": "string"
+				},
+				"name": {
+					"description": "Campaign name",
+					"type": "string"
+				},
+				"triggers": {
+					"items": {
+						"$ref": "#/definitions/CampaignTrigger"
+					},
+					"type": "array"
+				}
+			},
+			"required": [
+				"encryptedId",
+				"name",
+				"active"
+			]
+		},
+		"CampaignField": {
+			"properties": {
+				"name": {
+					"description": "Placeholder name used in campaign mailing",
+					"type": "string"
+				},
+				"type": {
+					"description": "Default: STRING",
+					"enum": [
+						"STRING",
+						"PRODUCTLIST"
+					],
+					"type": "string"
+				},
+				"value": {
+					"description": "Used by the string campaignfield",
+					"type": "string"
+				},
+				"values": {
+					"description": "Used by the productlist campaignfield to post multiple product references",
+					"items": {
+						"type": "string"
+					},
+					"type": "array"
+				}
+			},
+			"required": [
+				"name"
+			]
+		},
+		"CampaignMailing": {
+			"properties": {
+				"encryptedId": {
+					"description": "encryptedMailingId (Use '/campaign-mailing/*' to request additional data)",
+					"type": "string"
+				},
+				"name": {
+					"description": "Campaign mailing name",
+					"type": "string"
+				},
+				"type": {
+					"enum": [
+						"EMAIL",
+						"SMS"
+					],
+					"type": "string"
+				}
+			},
+			"required": [
+				"encryptedId",
+				"name",
+				"type"
+			]
+		},
+		"CampaignMailingBounce": {
+			"properties": {
+				"bounceDate": {
+					"description": "Date & time the bounce occured",
+					"format": "date-time",
+					"type": "string"
+				},
+				"campaignSubscriptionId": {
+					"format": "int32",
+					"type": "integer"
+				},
+				"contactIdentifier": {
+					"$ref": "#/definitions/ContactIdentifier"
+				},
+				"type": {
+					"enum": [
+						"HARDBOUNCE",
+						"SOFTBOUNCE"
+					],
+					"type": "string"
+				}
+			},
+			"required": [
+				"contactIdentifier",
+				"bounceDate",
+				"type",
+				"campaignSubscriptionId"
+			]
+		},
+		"CampaignMailingBounceResponse": {
+			"properties": {
+				"bounces": {
+					"items": {
+						"$ref": "#/definitions/CampaignMailingBounce"
+					},
+					"type": "array"
+				},
+				"paging": {
+					"$ref": "#/definitions/Paging"
+				}
+			}
+		},
+		"CampaignMailingClick": {
+			"properties": {
+				"campaignSubscriptionId": {
+					"format": "int32",
+					"type": "integer"
+				},
+				"clickDate": {
+					"description": "Date & time the click occurred",
+					"format": "date-time",
+					"type": "string"
+				},
+				"contactIdentifier": {
+					"$ref": "#/definitions/ContactIdentifier"
+				},
+				"linkId": {
+					"format": "int32",
+					"type": "integer"
+				}
+			},
+			"required": [
+				"contactIdentifier",
+				"clickDate",
+				"linkId",
+				"campaignSubscriptionId"
+			]
+		},
+		"CampaignMailingClickResponse": {
+			"properties": {
+				"clicks": {
+					"items": {
+						"$ref": "#/definitions/CampaignMailingClick"
+					},
+					"type": "array"
+				},
+				"paging": {
+					"$ref": "#/definitions/Paging"
+				}
+			}
+		},
+		"CampaignMailingDetails": {
+			"properties": {
+				"encryptedId": {
+					"description": "encryptedMailingId (Use '/campaign-mailing/*' to request additional data)",
+					"type": "string"
+				},
+				"links": {
+					"items": {
+						"$ref": "#/definitions/MailingLink"
+					},
+					"type": "array"
+				},
+				"message": {
+					"$ref": "#/definitions/Message"
+				},
+				"name": {
+					"description": "Campaign mailing name",
+					"type": "string"
+				},
+				"type": {
+					"enum": [
+						"EMAIL",
+						"SMS"
+					],
+					"type": "string"
+				}
+			},
+			"required": [
+				"encryptedId",
+				"name",
+				"type",
+				"message"
+			]
+		},
+		"CampaignMailingHistory": {
+			"properties": {
+				"bounce": {
+					"enum": [
+						"HARDBOUNCE",
+						"SOFTBOUNCE"
+					],
+					"type": "string"
+				},
+				"campaignMailing": {
+					"$ref": "#/definitions/CampaignMailing"
+				},
+				"campaignSubscriptionId": {
+					"format": "int32",
+					"type": "integer"
+				},
+				"clicked": {
+					"type": "boolean"
+				},
+				"opened": {
+					"type": "boolean"
+				},
+				"sentDate": {
+					"description": "Date & time the campaign mailing was sent",
+					"format": "date-time",
+					"type": "string"
+				}
+			},
+			"required": [
+				"campaignMailing",
+				"campaignSubscriptionId",
+				"sentDate",
+				"opened",
+				"clicked"
+			]
+		},
+		"CampaignMailingHistoryResponse": {
+			"properties": {
+				"campaignMailingHistories": {
+					"items": {
+						"$ref": "#/definitions/CampaignMailingHistory"
+					},
+					"type": "array"
+				},
+				"paging": {
+					"$ref": "#/definitions/Paging"
+				}
+			}
+		},
+		"CampaignMailingOpen": {
+			"properties": {
+				"campaignSubscriptionId": {
+					"format": "int32",
+					"type": "integer"
+				},
+				"contactIdentifier": {
+					"$ref": "#/definitions/ContactIdentifier"
+				},
+				"openDate": {
+					"description": "Date & time the open occurred",
+					"format": "date-time",
+					"type": "string"
+				}
+			},
+			"required": [
+				"campaignSubscriptionId",
+				"openDate",
+				"contactIdentifier"
+			]
+		},
+		"CampaignMailingOpenResponse": {
+			"properties": {
+				"opens": {
+					"items": {
+						"$ref": "#/definitions/CampaignMailingOpen"
+					},
+					"type": "array"
+				},
+				"paging": {
+					"$ref": "#/definitions/Paging"
+				}
+			}
+		},
+		"CampaignMailingRecipient": {
+			"properties": {
+				"campaignSubscriptionId": {
+					"format": "int32",
+					"type": "integer"
+				},
+				"contactIdentifier": {
+					"$ref": "#/definitions/ContactIdentifier"
+				},
+				"sendDate": {
+					"description": "Date & time the mailing has been sent",
+					"format": "date-time",
+					"type": "string"
+				}
+			},
+			"required": [
+				"contactIdentifier",
+				"sendDate",
+				"campaignSubscriptionId"
+			]
+		},
+		"CampaignMailingRecipientResponse": {
+			"properties": {
+				"paging": {
+					"$ref": "#/definitions/Paging"
+				},
+				"recipients": {
+					"items": {
+						"$ref": "#/definitions/CampaignMailingRecipient"
+					},
+					"type": "array"
+				}
+			}
+		},
+		"CampaignStopRequest": {
+			"properties": {
+				"externalContactId": {
+					"description": "Specified contact reference by external system",
+					"type": "string"
+				}
+			},
+			"required": [
+				"externalContactId"
+			]
+		},
+		"CampaignTrigger": {
+			"properties": {
+				"encryptedId": {
+					"description": "encryptedTriggerId",
+					"type": "string"
+				},
+				"name": {
+					"description": "Trigger name",
+					"type": "string"
+				}
+			},
+			"required": [
+				"encryptedId",
+				"name"
+			]
+		},
+		"CampaignTriggerRequest": {
+			"properties": {
+				"campaignFields": {
+					"items": {
+						"$ref": "#/definitions/CampaignField"
+					},
+					"type": "array"
+				},
+				"externalContactId": {
+					"description": "Specified contact reference by external system",
+					"type": "string"
+				}
+			},
+			"required": [
+				"externalContactId"
+			]
+		},
+		"Channel": {
+			"properties": {
+				"name": {
+					"enum": [
+						"EMAIL",
+						"SMS",
+						"DM"
+					],
+					"type": "string"
+				},
+				"value": {
+					"type": "boolean"
+				}
+			},
+			"required": [
+				"name",
+				"value"
+			]
+		},
+		"Contact": {
+			"properties": {
+				"channels": {
+					"description": "All available channels for this contact - Cannot be modified",
+					"items": {
+						"$ref": "#/definitions/Channel"
+					},
+					"type": "array"
+				},
+				"created": {
+					"description": "Date & time the contact was created - Cannot be modified",
+					"format": "int64",
+					"type": "integer"
+				},
+				"encryptedId": {
+					"description": "Contact reference generated by MailPlus - Cannot be modified",
+					"type": "string"
+				},
+				"externalId": {
+					"description": "Specified contact reference by external system",
+					"type": "string"
+				},
+				"lastChanged": {
+					"description": "Date & time the contact has been changed - Cannot be modified",
+					"format": "int64",
+					"type": "integer"
+				},
+				"properties": {
+					"additionalProperties": {
+						"type": "object"
+					},
+					"description": "Available properties can be retrieved by /contact/properties/list"
+				},
+				"temporary": {
+					"description": "Indication whether the contact is temporary - Cannot be modified",
+					"type": "boolean"
+				},
+				"testGroup": {
+					"description": "Defines whether the contact is added to the test group",
+					"type": "boolean"
+				}
+			},
+			"required": [
+				"externalId"
+			]
+		},
+		"ContactBounce": {
+			"properties": {
+				"contact": {
+					"$ref": "#/definitions/Contact"
+				},
+				"date": {
+					"description": "Date & time the bounce occurred",
+					"format": "date-time",
+					"type": "string"
+				},
+				"encryptedActId": {
+					"description": "encryptedMailingId (Use '/mailing/*' to request additional data)",
+					"type": "string"
+				},
+				"type": {
+					"type": "string",
+					"enum": [
+						"HARDBOUNCE",
+						"SOFTBOUNCE"
+					]
+				}
+			},
+			"required": [
+				"date",
+				"type",
+				"contact"
+			]
+		},
+		"ContactIdentifier": {
+			"properties": {
+				"encryptedId": {
+					"description": "Contact reference generated by MailPlus",
+					"type": "string"
+				},
+				"externalId": {
+					"description": "Specified contact reference by external system",
+					"type": "string"
+				}
+			},
+			"required": [
+				"encryptedId"
+			]
+		},
+		"ContactRequest": {
+			"properties": {
+				"contact": {
+					"$ref": "#/definitions/Contact"
+				},
+				"purge": {
+					"description": "Existing properties will be purged if not set - Default value: false",
+					"type": "boolean"
+				},
+				"update": {
+					"description": "Only existing contacts can be updated - Default value: false",
+					"type": "boolean"
+				}
+			},
+			"required": [
+				"contact"
+			]
+		},
+		"Conversion": {
+			"properties": {
+				"interactionDate": {
+					"description": "Date & time the shopping cart was created",
+					"type": "string",
+					"format": "date-time"
+				},
+				"mailplusId": {
+					"description": "reference generated by MailPlus to add conversion details to a mailing report",
+					"type": "string"
+				},
+				"products": {
+					"description": "Products part of the order/shopping cart",
+					"items": {
+						"type": "string"
+					},
+					"type": "array"
+				},
+				"type": {
+					"enum": [
+						"CREATE_SHOPPINGCART",
+						" CONVERT_SHOPPINGCART"
+					],
+					"type": "string"
+				},
+				"value": {
+					"description": "Total order value in cents",
+					"type": "string"
+				}
+			},
+			"required": [
+				"mailplusId",
+				"type",
+				"interactionDate"
+			]
+		},
+		"CreateTemporaryListRequest": {
+			"properties": {
+				"contacts": {
+					"description": "List of externalContactId's",
+					"items": {
+						"type": "string"
+					},
+					"type": "array"
+				},
+				"externalTemporaryListId": {
+					"description": "Specified list reference by external system",
+					"type": "string"
+				},
+				"name": {
+					"description": "Temporary list name visible in MailPlus",
+					"type": "string"
+				}
+			},
+			"required": [
+				"externalTemporaryListId",
+				"name"
+			]
+		},
+		"ErrorResponse": {
+			"properties": {
+				"errorType": {
+					"type": "string",
+					"enum": [
+						"INVALID_PARAMS",
+						"INVALID_STATE",
+						"NAME_ALREADY_IN_USE",
+						"ID_NOTUNIQUE",
+						"PRODUCT_NOTFOUND",
+						"AUTH_NOT_FOUND",
+						"NOT_AUTHORIZED",
+						"FORM_NOT_FOUND",
+						"CONTACT_NOT_FOUND",
+						"CONTACT_OPTOUT",
+						"CONTACT_ALREADY_EXISTS",
+						"INVALID_PROPERTY",
+						"BACKEND_EXCEPTION",
+						"RESOURCE_NOT_FOUND",
+						"TRIGGER_NOTFOUND",
+						"CAMPAIGN_NOTFOUND",
+						"ORDER_NOTFOUND",
+						"MAILING_NOTFOUND",
+						"INVALID_MAILING",
+						"FORMRESULT_NOT_FOUND"
+					]
+				},
+				"message": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"errorType",
+				"message"
+			]
+		},
+		"Form": {
+			"properties": {
+				"formState": {
+					"enum": [
+						"draft",
+						"proof",
+						"final"
+					],
+					"type": "string"
+				},
+				"formSubType": {
+					"enum": [
+						"normal",
+						"subscribe",
+						"unSubscribe",
+						"editProfile"
+					],
+					"type": "string"
+				},
+				"id": {
+					"description": "formId (Use '/form/*' to request additional data)",
+					"format": "int32",
+					"type": "integer"
+				},
+				"name": {
+					"description": "Form name",
+					"type": "string"
+				}
+			},
+			"required": [
+				"id",
+				"name",
+				"formSubType",
+				"formState"
+			]
+		},
+		"FormElementResult": {
+			"properties": {
+				"answer": {
+					"items": {
+						"type": "string"
+					},
+					"type": "array"
+				},
+				"description": {
+					"type": "string"
+				},
+				"fieldId": {
+					"format": "int32",
+					"type": "integer"
+				},
+				"rank": {
+					"format": "int32",
+					"type": "integer"
+				}
+			},
+			"required": [
+				"rank",
+				"fieldId",
+				"description"
+			]
+		},
+		"FormHistory": {
+			"properties": {
+				"completed": {
+					"type": "boolean"
+				},
+				"form": {
+					"$ref": "#/definitions/Form"
+				},
+				"formResultId": {
+					"description": "(Use '/form/result*' to request additional data)",
+					"format": "int32",
+					"type": "integer"
+				},
+				"submitDate": {
+					"description": "Date & time the form was submitted",
+					"format": "date-time",
+					"type": "string"
+				}
+			},
+			"required": [
+				"form",
+				"formResultId",
+				"submitDate",
+				"completed"
+			]
+		},
+		"FormHistoryResponse": {
+			"properties": {
+				"formHistories": {
+					"items": {
+						"$ref": "#/definitions/FormHistory"
+					},
+					"type": "array"
+				},
+				"paging": {
+					"$ref": "#/definitions/Paging"
+				}
+			}
+		},
+		"FormRequest": {
+			"properties": {
+				"encId": {
+					"description": "Form reference generated by MailPlus",
+					"type": "string"
+				},
+				"extraParams": {
+					"type": "string"
+				},
+				"outputFormat": {
+					"description": "Default value: HTML4STRICT",
+					"enum": [
+						"HTML4STRICT",
+						"XHTML1STRICT"
+					],
+					"type": "string"
+				},
+				"outputMode": {
+					"description": "Default value: TABLES",
+					"enum": [
+						"TABLES",
+						"DIV"
+					],
+					"type": "string"
+				},
+				"postUrl": {
+					"description": "Form action URL",
+					"type": "string"
+				},
+				"prefilledValues": {
+					"additionalProperties": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"description": "Given values will be prefilled in the HTML output"
+				}
+			},
+			"required": [
+				"postUrl"
+			]
+		},
+		"FormResponse": {
+			"properties": {
+				"html": {
+					"description": "HTML form",
+					"type": "string"
+				},
+				"isConfirmationPage": {
+					"description": "Indicates whether the requested form is a confirmation page",
+					"type": "boolean"
+				},
+				"script": {
+					"description": "Validation scripts",
+					"type": "string"
+				},
+				"url": {
+					"type": "string"
+				}
+			}
+		},
+		"FormResult": {
+			"properties": {
+				"answers": {
+					"description": "All form questions and answers if available",
+					"items": {
+						"$ref": "#/definitions/FormElementResult"
+					},
+					"type": "array"
+				},
+				"completed": {
+					"type": "boolean"
+				},
+				"formResultId": {
+					"description": "(Use '/form/result*' to request additional data)",
+					"format": "int32",
+					"type": "integer"
+				},
+				"submittedAt": {
+					"description": "Date & time the form was submitted",
+					"format": "date-time",
+					"type": "string"
+				},
+				"testResult": {
+					"description": "Test results only occur when the formState is not final",
+					"type": "boolean"
+				}
+			},
+			"required": [
+				"formResultId",
+				"submittedAt",
+				"testResult",
+				"completed"
+			]
+		},
+		"Mailing": {
+			"properties": {
+				"archiveLink": {
+					"description": "Link to an online version of the mailing",
+					"type": "string"
+				},
+				"encryptedId": {
+					"description": "encryptedMailingId (Use '/mailing/*' to request additional data)",
+					"type": "string"
+				},
+				"name": {
+					"description": "Mailing name",
+					"type": "string"
+				},
+				"scheduledStartDate": {
+					"description": "Date & time the mailing was scheduled to send",
+					"format": "date-time",
+					"type": "string"
+				},
+				"sentCount": {
+					"description": "Number of mailings sent",
+					"format": "int32",
+					"type": "integer"
+				},
+				"type": {
+					"enum": [
+						"EMAIL",
+						"SMS",
+						"DM"
+					],
+					"type": "string"
+				}
+			},
+			"required": [
+				"encryptedId",
+				"name",
+				"scheduledStartDate",
+				"type",
+				"sentCount"
+			]
+		},
+		"MailingBounce": {
+			"properties": {
+				"bounceDate": {
+					"description": "Date & time the bounce occured",
+					"format": "date-time",
+					"type": "string"
+				},
+				"contactIdentifier": {
+					"$ref": "#/definitions/ContactIdentifier"
+				},
+				"type": {
+					"enum": [
+						"HARDBOUNCE",
+						"SOFTBOUNCE"
+					],
+					"type": "string"
+				}
+			},
+			"required": [
+				"contactIdentifier",
+				"bounceDate",
+				"type"
+			]
+		},
+		"MailingBounceResponse": {
+			"properties": {
+				"bounces": {
+					"items": {
+						"$ref": "#/definitions/MailingBounce"
+					},
+					"type": "array"
+				},
+				"paging": {
+					"$ref": "#/definitions/Paging"
+				}
+			}
+		},
+		"MailingClick": {
+			"properties": {
+				"clickDate": {
+					"description": "Date & time the click occurred",
+					"format": "date-time",
+					"type": "string"
+				},
+				"contactIdentifier": {
+					"$ref": "#/definitions/ContactIdentifier"
+				},
+				"linkId": {
+					"format": "int32",
+					"type": "integer"
+				}
+			},
+			"required": [
+				"contactIdentifier",
+				"clickDate",
+				"linkId"
+			]
+		},
+		"MailingClickResponse": {
+			"properties": {
+				"clicks": {
+					"items": {
+						"$ref": "#/definitions/MailingClick"
+					},
+					"type": "array"
+				},
+				"paging": {
+					"$ref": "#/definitions/Paging"
+				}
+			}
+		},
+		"MailingContactClick": {
+			"properties": {
+				"clickDate": {
+					"description": "Date & time the click occurred",
+					"format": "date-time",
+					"type": "string"
+				},
+				"linkId": {
+					"format": "int32",
+					"type": "integer"
+				}
+			},
+			"required": [
+				"clickDate",
+				"linkId"
+			]
+		},
+		"MailingContactClickResponse": {
+			"properties": {
+				"clicks": {
+					"items": {
+						"$ref": "#/definitions/MailingContactClick"
+					},
+					"type": "array"
+				},
+				"paging": {
+					"$ref": "#/definitions/Paging"
+				}
+			}
+		},
+		"MailingContactOpen": {
+			"properties": {
+				"openDate": {
+					"description": "Date & time the open occurred",
+					"format": "date-time",
+					"type": "string"
+				}
+			},
+			"required": [
+				"openDate"
+			]
+		},
+		"MailingContactOpenResponse": {
+			"properties": {
+				"opens": {
+					"items": {
+						"$ref": "#/definitions/MailingContactOpen"
+					},
+					"type": "array"
+				},
+				"paging": {
+					"$ref": "#/definitions/Paging"
+				}
+			}
+		},
+		"MailingDetails": {
+			"properties": {
+				"archiveLink": {
+					"description": "Link to an online version of the mailing",
+					"type": "string"
+				},
+				"encryptedId": {
+					"description": "encryptedMailingId (Use '/mailing/*' to request additional data)",
+					"type": "string"
+				},
+				"links": {
+					"description": "trackable links of the mailing",
+					"items": {
+						"$ref": "#/definitions/MailingLink"
+					},
+					"type": "array"
+				},
+				"message": {
+					"$ref": "#/definitions/Message"
+				},
+				"name": {
+					"description": "Mailing name",
+					"type": "string"
+				},
+				"scheduledStartDate": {
+					"description": "Date & time the mailing was scheduled to send",
+					"format": "date-time",
+					"type": "string"
+				},
+				"sender": {
+					"description": "Sender name",
+					"type": "string"
+				},
+				"sentCount": {
+					"description": "Number of mailings sent",
+					"format": "int32",
+					"type": "integer"
+				},
+				"targetGroup": {
+					"description": "Target group name",
+					"type": "string"
+				},
+				"type": {
+					"enum": [
+						"EMAIL",
+						"SMS",
+						"DM"
+					],
+					"type": "string"
+				}
+			},
+			"required": [
+				"encryptedId",
+				"name",
+				"scheduledStartDate",
+				"type",
+				"sentCount",
+				"sender",
+				"targetGroup",
+				"message"
+			]
+		},
+		"MailingHistory": {
+			"properties": {
+				"bounce": {
+					"enum": [
+						"HARDBOUNCE",
+						"SOFTBOUNCE"
+					],
+					"type": "string"
+				},
+				"clicked": {
+					"type": "boolean"
+				},
+				"mailing": {
+					"$ref": "#/definitions/Mailing"
+				},
+				"opened": {
+					"type": "boolean"
+				},
+				"sentDate": {
+					"description": "Date & time the mailing was sent",
+					"format": "date-time",
+					"type": "string"
+				}
+			},
+			"required": [
+				"mailing",
+				"sentDate",
+				"opened",
+				"clicked"
+			]
+		},
+		"MailingHistoryResponse": {
+			"properties": {
+				"mailingHistories": {
+					"items": {
+						"$ref": "#/definitions/MailingHistory"
+					},
+					"type": "array"
+				},
+				"paging": {
+					"$ref": "#/definitions/Paging"
+				}
+			}
+		},
+		"MailingLink": {
+			"properties": {
+				"code": {
+					"description": "Specified link code in MailPlus",
+					"type": "string"
+				},
+				"id": {
+					"description": "linkId",
+					"format": "int32",
+					"type": "integer"
+				},
+				"name": {
+					"description": "Specified link name in MailPlus",
+					"type": "string"
+				},
+				"type": {
+					"enum": [
+						"twitter",
+						"facebook",
+						"hyves",
+						"linkedin",
+						"googleplus",
+						"googleone",
+						"openhtml",
+						"opentext",
+						"openpdf",
+						"openpdftext",
+						"unsubscribe",
+						"editprofile",
+						"webshop",
+						"conversion"
+					],
+					"type": "string"
+				},
+				"url": {
+					"description": "Link URL",
+					"type": "string"
+				}
+			},
+			"required": [
+				"id",
+				"name",
+				"url"
+			]
+		},
+		"MailingOpen": {
+			"properties": {
+				"contactIdentifier": {
+					"$ref": "#/definitions/ContactIdentifier"
+				},
+				"openDate": {
+					"description": "Date & time the open occurred",
+					"format": "date-time",
+					"type": "string"
+				}
+			},
+			"required": [
+				"contactIdentifier",
+				"openDate"
+			]
+		},
+		"MailingOpenResponse": {
+			"properties": {
+				"opens": {
+					"items": {
+						"$ref": "#/definitions/MailingOpen"
+					},
+					"type": "array"
+				},
+				"paging": {
+					"$ref": "#/definitions/Paging"
+				}
+			}
+		},
+		"MailingRecipient": {
+			"properties": {
+				"contactIdentifier": {
+					"$ref": "#/definitions/ContactIdentifier"
+				}
+			},
+			"required": [
+				"contactIdentifier"
+			]
+		},
+		"MailingRecipientResponse": {
+			"properties": {
+				"paging": {
+					"$ref": "#/definitions/Paging"
+				},
+				"recipients": {
+					"items": {
+						"$ref": "#/definitions/MailingRecipient"
+					},
+					"type": "array"
+				}
+			}
+		},
+		"MailingStats": {
+			"properties": {
+				"acceptedCount": {
+					"description": "Accepted = Sent - hard bounce - soft bounce",
+					"format": "int32",
+					"type": "integer"
+				},
+				"clickCount": {
+					"description": "Unique clicks",
+					"format": "int32",
+					"type": "integer"
+				},
+				"conversionClickCount": {
+					"description": "Unique clicks on links marked as 'conversion'",
+					"format": "int32",
+					"type": "integer"
+				},
+				"conversionValue": {
+					"description": "Total conversion value in cents (eCom only)",
+					"format": "int64",
+					"type": "integer"
+				},
+				"hardbounceCount": {
+					"description": "Number of hard bounces",
+					"format": "int32",
+					"type": "integer"
+				},
+				"notRetainedAfterBounceCount": {
+					"description": "Hard bounces + 4x soft bounced in a row",
+					"format": "int32",
+					"type": "integer"
+				},
+				"openCount": {
+					"description": "Unique opens",
+					"format": "int32",
+					"type": "integer"
+				},
+				"openRenderedCount": {
+					"description": "Unique rendered opens (images downloaded)",
+					"format": "int32",
+					"type": "integer"
+				},
+				"sentCount": {
+					"description": "Number of recipients",
+					"format": "int32",
+					"type": "integer"
+				},
+				"shoppingcartConvertedCount": {
+					"description": "Unique converted shopping carts (eCom only)",
+					"format": "int32",
+					"type": "integer"
+				},
+				"shoppingcartCreatedCount": {
+					"description": "Unique created shopping carts (eCom only)",
+					"format": "int32",
+					"type": "integer"
+				},
+				"softbounceCount": {
+					"description": "Number of soft bounces",
+					"format": "int32",
+					"type": "integer"
+				},
+				"toWebshopCount": {
+					"description": "Unique clicks to webshop (eCom only)",
+					"format": "int32",
+					"type": "integer"
+				},
+				"unsubscribeCount": {
+					"description": "Number of unsubscribed contacts",
+					"format": "int32",
+					"type": "integer"
+				}
+			},
+			"required": [
+				"sentCount",
+				"acceptedCount",
+				"openCount",
+				"openRenderedCount",
+				"clickCount",
+				"hardbounceCount",
+				"softbounceCount",
+				"notRetainedAfterBounceCount",
+				"conversionClickCount",
+				"unsubscribeCount"
+			]
+		},
+		"Message": {
+			"properties": {
+				"author": {
+					"description": "Message author",
+					"type": "string"
+				},
+				"fromEmail": {
+					"type": "string"
+				},
+				"fromName": {
+					"type": "string"
+				},
+				"name": {
+					"description": "Message name",
+					"type": "string"
+				},
+				"subject": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"name",
+				"author",
+				"fromName"
+			]
+		},
+		"Order": {
+			"properties": {
+				"date": {
+					"description": "Date & time the order was placed",
+					"type": "string"
+				},
+				"externalContactId": {
+					"description": "Specified contact reference by external system",
+					"type": "string"
+				},
+				"externalId": {
+					"description": "Specified order reference by external system",
+					"type": "string"
+				},
+				"externalProductIds": {
+					"description": "Products part of the order (Use '/product/*' to request or post additional data)",
+					"items": {
+						"type": "string"
+					},
+					"type": "array"
+				},
+				"value": {
+					"description": "Total order value in cents",
+					"type": "string"
+				}
+			},
+			"required": [
+				"externalId",
+				"externalContactId",
+				"date",
+				"value",
+				"externalProductIds"
+			]
+		},
+		"OrderRequest": {
+			"properties": {
+				"order": {
+					"$ref": "#/definitions/Order"
+				},
+				"update": {
+					"description": "Only existing orders can be updated - Default value: false",
+					"type": "boolean"
+				}
+			},
+			"required": [
+				"order"
+			]
+		},
+		"Paging": {
+			"properties": {
+				"after": {
+					"format": "int32",
+					"type": "integer"
+				},
+				"next": {
+					"type": "string"
+				}
+			}
+		},
+		"Params": {
+			"properties": {
+				"formParams": {
+					"additionalProperties": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					}
+				},
+				"outputFormat": {
+					"description": "default: HTML4STRICT",
+					"enum": [
+						"HTML4STRICT",
+						"XHTML1STRICT"
+					],
+					"type": "string"
+				},
+				"outputMode": {
+					"description": "default: TABLES",
+					"enum": [
+						"TABLES",
+						"DIV"
+					],
+					"type": "string"
+				},
+				"postUrl": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"postUrl",
+				"formParams"
+			]
+		},
+		"Product": {
+			"properties": {
+				"addToCartLink": {
+					"type": "string"
+				},
+				"brand": {
+					"description": "Product brand",
+					"type": "string"
+				},
+				"category": {
+					"description": "Product category",
+					"type": "string"
+				},
+				"changeDate": {
+					"description": "Date & time the product has been changed - Cannot be modified",
+					"format": "date-time",
+					"type": "string"
+				},
+				"creationDate": {
+					"description": "Date & time the product was created  - Cannot be modified",
+					"format": "date-time",
+					"type": "string"
+				},
+				"deleted": {
+					"description": "Indicates whether a product is deleted - Default value: false",
+					"type": "boolean"
+				},
+				"description": {
+					"description": "Product description",
+					"type": "string"
+				},
+				"externalId": {
+					"description": "externalProductId - Specified product reference by external system",
+					"type": "string"
+				},
+				"gtin": {
+					"type": "string"
+				},
+				"imageLargeUrl": {
+					"type": "string"
+				},
+				"imageUrl": {
+					"type": "string"
+				},
+				"language": {
+					"type": "string"
+				},
+				"link": {
+					"description": "Link to the product page",
+					"type": "string"
+				},
+				"name": {
+					"description": "Product name",
+					"type": "string"
+				},
+				"oldPrice": {
+					"description": "Only used for discounted products",
+					"type": "string"
+				},
+				"price": {
+					"type": "string"
+				},
+				"ratingImageUrl": {
+					"type": "string"
+				},
+				"ratingValue": {
+					"type": "string"
+				},
+				"reviewLink": {
+					"description": "Link to the review page",
+					"type": "string"
+				},
+				"sku": {
+					"type": "string"
+				},
+				"specifications": {
+					"items": {
+						"$ref": "#/definitions/ProductSpecification"
+					},
+					"type": "array"
+				},
+				"stock": {
+					"description": "Default value: UNKNOWN",
+					"enum": [
+						"LIMITED",
+						"GOOD",
+						"UNKNOWN"
+					],
+					"type": "string"
+				},
+				"visible": {
+					"description": "Defines whether the product is visible in MailPlus - Default value: true",
+					"type": "boolean"
+				}
+			},
+			"required": [
+				"externalId",
+				"name",
+				"link",
+				"price",
+				"imageUrl"
+			]
+		},
+		"ProductRequest": {
+			"properties": {
+				"product": {
+					"$ref": "#/definitions/Product"
+				},
+				"update": {
+					"description": "Only existing products can be updated - Default value: false",
+					"type": "boolean"
+				}
+			},
+			"required": [
+				"product"
+			]
+		},
+		"ProductSpecification": {
+			"properties": {
+				"description": {
+					"type": "string"
+				},
+				"rank": {
+					"type": "string"
+				},
+				"value": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"description",
+				"value"
+			]
+		},
+		"Property": {
+			"properties": {
+				"description": {
+					"description": "Description label of the property",
+					"type": "string"
+				},
+				"entries": {
+					"description": "Only visible for 'SET' type. Defines the options and corresponding bit values",
+					"items": {
+						"$ref": "#/definitions/SetPropertyEntry"
+					},
+					"type": "array"
+				},
+				"name": {
+					"description": "Name of the property",
+					"type": "string"
+				},
+				"type": {
+					"enum": [
+						"birthdate",
+						"date",
+						"dateTime",
+						"email",
+						"gender",
+						"int",
+						"mobNr",
+						"money",
+						"postcode",
+						"set",
+						"string"
+					],
+					"type": "string"
+				}
+			},
+			"required": [
+				"name",
+				"description",
+				"type"
+			]
+		},
+		"SetPropertyEntry": {
+			"properties": {
+				"bit": {
+					"format": "int64",
+					"type": "integer"
+				},
+				"description": {
+					"description": "Description of an option",
+					"type": "string"
+				},
+				"rank": {
+					"format": "int32",
+					"type": "integer"
+				}
+			},
+			"required": [
+				"bit",
+				"description",
+				"rank"
+			]
+		},
+		"TemporaryList": {
+			"properties": {
+				"createdAt": {
+					"description": "Date & time the temporary list was created",
+					"format": "date-time",
+					"type": "string"
+				},
+				"externalTemporaryListId": {
+					"description": "Specified list reference by external system",
+					"type": "string"
+				},
+				"name": {
+					"description": "Temporary list name visible in MailPlus",
+					"type": "string"
+				},
+				"type": {
+					"description": "Default value: API - Cannot be modified",
+					"enum": [
+						"IMPORT",
+						"RESPONSE",
+						"API",
+						"SPLIT"
+					],
+					"type": "string"
+				}
+			},
+			"required": [
+				"name",
+				"createdAt",
+				"type"
+			]
+		}
+	},
+	"tags": [
+		{
+			"description": "Operations about campaigns",
+			"name": "campaign"
+		},
+		{
+			"description": "Operations about campaign mailings",
+			"name": "campaign-mailing"
+		},
+		{
+			"description": "Operations about contacts",
+			"name": "contact"
+		},
+		{
+			"description": "Operations about conversions",
+			"name": "conversion"
+		},
+		{
+			"description": "Operations about forms",
+			"name": "form"
+		},
+		{
+			"description": "Operations about mailings",
+			"name": "mailing"
+		},
+		{
+			"description": "Operations about orders",
+			"name": "order"
+		},
+		{
+			"description": "Operations about products",
+			"name": "product"
+		},
+		{
+			"description": "Operations about subscriptions",
+			"name": "subscription"
+		},
+		{
+			"description": "Operations about templists",
+			"name": "templist"
+		}
+	]
+}
