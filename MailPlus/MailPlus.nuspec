@@ -3,8 +3,8 @@
   <metadata>
     <id>MailPlus.NET</id>
     <version>$version$</version>
-    <title>$title$</title>
-    <authors>$author$</authors>
+    <title>MailPlus.NET</title>
+    <authors>Ronald Barendse</authors>
     <owners>$author$</owners>
     <licenseUrl>https://raw.githubusercontent.com/panoramastudios/MailPlus.NET/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/panoramastudios/MailPlus.NET</projectUrl>
