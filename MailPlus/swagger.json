@@ -4098,6 +4098,21 @@
 				"rank"
 			]
 		},
+		"SetPropertyFlag": {
+			"properties": {
+				"bit": {
+					"format": "int64",
+					"type": "integer"
+				},
+				"enabled": {
+					"type": "boolean"
+				}
+			},
+			"required": [
+				"bit",
+				"enabled"
+			]
+		},
 		"TemporaryList": {
 			"properties": {
 				"createdAt": {
