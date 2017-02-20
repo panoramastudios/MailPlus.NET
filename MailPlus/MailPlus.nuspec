@@ -1,17 +1,22 @@
 <?xml version="1.0"?>
 <package >
-  <metadata>
-    <id>MailPlus.NET</id>
-    <version>$version$</version>
-    <title>MailPlus.NET</title>
-    <authors>Ronald Barendse</authors>
-    <owners>$author$</owners>
-    <licenseUrl>https://raw.githubusercontent.com/panoramastudios/MailPlus.NET/master/LICENSE</licenseUrl>
-    <projectUrl>https://github.com/panoramastudios/MailPlus.NET</projectUrl>
-    <iconUrl>https://raw.githubusercontent.com/panoramastudios/MailPlus.NET/master/mailplus.png</iconUrl>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>$description$</description>
-    <copyright>Panorama Studios</copyright>
-    <tags>MailPlus</tags>
-  </metadata>
+	<metadata>
+		<id>MailPlus.NET</id>
+		<version>$version$</version>
+		<title>MailPlus.NET</title>
+		<authors>Ronald Barendse</authors>
+		<owners>$author$</owners>
+		<licenseUrl>https://raw.githubusercontent.com/panoramastudios/MailPlus.NET/master/LICENSE</licenseUrl>
+		<projectUrl>https://github.com/panoramastudios/MailPlus.NET</projectUrl>
+		<iconUrl>https://raw.githubusercontent.com/panoramastudios/MailPlus.NET/master/mailplus.png</iconUrl>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>$description$</description>
+		<copyright>Panorama Studios</copyright>
+		<tags>MailPlus</tags>
+		<dependencies>
+			<group targetFramework="portable45-net45+win8+wpa81">
+				<dependency id="DotNetOpenAuth.OAuth.Core" version="4.3.4.13329" />
+			</group>
+		</dependencies>
+	</metadata>
 </package>
